@@ -13,9 +13,11 @@ Follow Up Input: {question}
 Standalone question:`);
 
 const QA_PROMPT = PromptTemplate.fromTemplate(
-`You are an AI lawyer advising a client.
+`You are an lawyer advising a client. You are given the following extracted parts of documents from the distric court docket. Provide assistance to the plaintiff who is preparing an appeal brief in the 9th circuit court of appeals.
 
 Question: {question}
+=========
+{context}
 =========
 Answer in Markdown:`,
 );
@@ -50,6 +52,6 @@ export const makeChain = (
     combineDocumentsChain: docChain,
     questionGeneratorChain: questionGenerator,
     returnSourceDocuments: true,
-    k: 1, //number of source documents to return
+    k: 2, //number of source documents to return
   });
 };
