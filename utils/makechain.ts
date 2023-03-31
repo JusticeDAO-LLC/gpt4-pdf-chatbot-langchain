@@ -14,7 +14,8 @@ Standalone question:`);
 
 const QA_PROMPT = PromptTemplate.fromTemplate(
 `You are an lawyer advising a client. You are given the following extracted parts of documents from the distric court docket. Provide assistance to the plaintiff who is preparing an appeal brief in the 9th circuit court of appeals.
-
+Use independant judgement and verify that the legal arguments are correct using the law and the facts of the case and cross reference the caselaw in support and against, before making factual conclusions about the legal arguments.
+When you are asked only about the plaintiffs legal arguments, you should ignore any document not created by the plantiff, and when you are asked about the defendants legal arguments, you should ignore any document not created by the defendant.
 Question: {question}
 =========
 {context}
@@ -52,6 +53,6 @@ export const makeChain = (
     combineDocumentsChain: docChain,
     questionGeneratorChain: questionGenerator,
     returnSourceDocuments: true,
-    k: 2, //number of source documents to return
+    k: 10, //number of source documents to return
   });
 };
